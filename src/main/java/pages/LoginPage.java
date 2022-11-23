@@ -6,7 +6,8 @@ import org.openqa.selenium.WebElement;
 
 public class LoginPage {
 
-    private WebDriver driver;
+    private final WebDriver driver;
+    private static final String EMAIL_XPATH = "//input[@id='Email']";
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -28,7 +29,7 @@ public class LoginPage {
     }
 
     public void enterEmail() {
-        WebElement enteremail = driver.findElement(By.xpath("//input[@id='Email']"));
+        WebElement enteremail = driver.findElement(By.xpath(EMAIL_XPATH));
         enteremail.sendKeys("leesa1343@yopmail.com");
     }
 
