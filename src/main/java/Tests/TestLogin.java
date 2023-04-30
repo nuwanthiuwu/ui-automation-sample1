@@ -5,7 +5,7 @@ import pages.LoginPage;
 
 import static org.testng.Assert.assertTrue;
 
-public class TestLogin extends Base {
+public class TestLogin extends BaseTests {
 
    @Test
     public void When_GotoHomePageWhileNoUserLogIn_Then_TryToLogin() {

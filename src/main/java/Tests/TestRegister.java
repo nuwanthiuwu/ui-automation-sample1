@@ -2,10 +2,12 @@ package Tests;
 
 import org.testng.annotations.Test;
 import pages.RegisterPage;
+import pages.RegisterSuccessPage;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class TestRegister extends Base{
+public class TestRegister extends BaseTests {
 
     @Test
     public void When_GotoRegisterPageWhileNoUserRegisterPreviously_Then_TryToRegister() {
@@ -53,15 +55,9 @@ public class TestRegister extends Base{
         registerPage.enterConfirmPassword();
         System.out.println("CPW");
 
-        registerPage.clickOnRegisterButton();
-        System.out.println("REr");
+        RegisterSuccessPage successAlertMessage = registerPage.clickOnRegisterButton();
+        assertEquals(successAlertMessage.successMessage(),"Your registration completed","Your Registration success");
 
-        registerPage.clickOnContinueButton();
-        System.out.println("CONYINUE");
-
-        //registerPage.checkSignOutButton();
-        boolean isDisplayedSignOut = registerPage.checkSignOutButton();
-        assertTrue(isDisplayedSignOut);
 
     }
 

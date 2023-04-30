@@ -5,14 +5,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.Random;
+
 public class RegisterPage {
 
-    private WebDriver driver;
-    private static final String REGISTER_BUTTON_XPATH ="//a[normalize-space()='Register']";
-    private static final String GENDER_XPATH ="//input[@id='gender-female']";
-    private static final String FIRSTNAME_XPATH ="//input[@id='FirstName']";
-    private static final String LASTNAME_XPATH ="//input[@id='LastName']";
-    private static final String DATE_XPATH = "//select[@name='DateOfBirthDay']";
+    private final WebDriver driver;
+   // private static final String REGISTER_BUTTON_XPATH ="//a[normalize-space()='Register']";
+    private static final By REGISTER_BUTTON = By.xpath("//a[normalize-space()='Register']");
+    private static final By GENDER_XPATH = By.xpath("//input[@id='gender-female']");
+    private static final By FIRSTNAME_XPATH = By.xpath("//input[@id='FirstName']");
+    private static final By LASTNAME_XPATH = By.xpath("//input[@id='LastName']");
+    private static final By DATE_XPATH = By.xpath("//select[@name='DateOfBirthDay']");
     private static final String MONTH_XPATH ="//select[@name='DateOfBirthMonth']";
     private static final String YEAR_XPATH ="//select[@name='DateOfBirthYear']";
     private static final String ENTER_EMAIL_XPATH ="//input[@id='Email']";
@@ -21,43 +24,45 @@ public class RegisterPage {
     private static final String ENTER_PASSWORD_XPATH ="//input[@id='Password']";
     private static final String ENTER_CONFIRM_PASSWORD_XPATH ="//input[@id='ConfirmPassword']";
     private static final String CLICK_REGISTER_BUTTON_XPATH ="//button[@id='register-button']";
-    private static final String CLICK_CONTINUE_BUTTON_XPATH ="//a[normalize-space()='Continue']";
-    private static final String REGISTER_SUCCESS_XPATH ="//a[normalize-space()='Log out']";
+
 
     public RegisterPage(WebDriver driver) {
+
         this.driver = driver;
     }
 
     public void loadingRedisterPage() {
+
         driver.get("https://demo.nopcommerce.com/");
     }
 
     public void refresh() {
+
         driver.navigate().refresh();
     }
 
     public void clickOnTheRegisterButton() {
-        WebElement registerButton = driver.findElement(By.xpath(REGISTER_BUTTON_XPATH));
+        WebElement registerButton = driver.findElement(REGISTER_BUTTON);
         registerButton.click();
     }
 
     public void genderSelection() {
-        WebElement gender = driver.findElement(By.xpath(GENDER_XPATH));
+        WebElement gender = driver.findElement(GENDER_XPATH);
         gender.click();
     }
 
     public void enterFirstName() {
-        WebElement firstName = driver.findElement(By.xpath(FIRSTNAME_XPATH));
+        WebElement firstName = driver.findElement(FIRSTNAME_XPATH);
         firstName.sendKeys("Leesha");
     }
 
     public void enterLastName() {
-        WebElement lastName = driver.findElement(By.xpath(LASTNAME_XPATH));
+        WebElement lastName = driver.findElement(LASTNAME_XPATH);
         lastName.sendKeys("Maven");
     }
 
     public void enterDate() {
-        WebElement day = driver.findElement(By.xpath(DATE_XPATH));
+        WebElement day = driver.findElement(DATE_XPATH);
         Select enterDay = new Select(day);
         enterDay.selectByValue("10");
     }
@@ -76,7 +81,7 @@ public class RegisterPage {
 
     public void enterEmail() {
         WebElement email = driver.findElement(By.xpath(ENTER_EMAIL_XPATH));
-        email.sendKeys("leesa1343@yopmail.com");
+        email.sendKeys("leesa"+ new Random().nextInt(1000) +"@yopmail.com");
     }
 
     public void enterCompanyName() {
@@ -99,20 +104,12 @@ public class RegisterPage {
         confirmPassword.sendKeys("Leesa@123");
     }
 
-    public void clickOnRegisterButton() {
+    public RegisterSuccessPage clickOnRegisterButton() {
         WebElement registerButn = driver.findElement(By.xpath(CLICK_REGISTER_BUTTON_XPATH));
         registerButn.click();
+        return new RegisterSuccessPage(driver);
     }
 
-    public void clickOnContinueButton() {
-        WebElement continueButn = driver.findElement(By.xpath(CLICK_CONTINUE_BUTTON_XPATH));
-        continueButn.click();
-    }
-    // Can we use String instead of boolean
-    public boolean checkSignOutButton() {
-        WebElement registerSuccess = driver.findElement(By.xpath(REGISTER_SUCCESS_XPATH));
-        registerSuccess.getText();
-        return true;
-    }
+
 }
 
