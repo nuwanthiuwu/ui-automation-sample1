@@ -9,7 +9,7 @@ public class RegisterSuccessPage {
     private final WebDriver driver;
 
     private static final By SuccessAlert = By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div[1]");
-    private static final By CLICK_CONTINUE_BUTTON = By.xpath("//a[normalize-space()='Continue']");
+    private static final By CLICK_CONTINUE_BUTTON = By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div[2]/a");
 
     public RegisterSuccessPage(WebDriver driver) {
         this.driver = driver;

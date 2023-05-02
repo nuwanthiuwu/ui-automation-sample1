@@ -1,6 +1,7 @@
 package Tests;
 
 import org.testng.annotations.Test;
+import pages.HomePage;
 import pages.RegisterPage;
 import pages.RegisterSuccessPage;
 
@@ -58,6 +59,8 @@ public class TestRegister extends BaseTests {
         RegisterSuccessPage successAlertMessage = registerPage.clickOnRegisterButton();
         assertEquals(successAlertMessage.successMessage(),"Your registration completed","Your Registration success");
 
+        HomePage homePage = successAlertMessage.clickOnContinueButton();
+        assertEquals(homePage.HomePageMessage(),"Welcome to our store","Incorrect Page");
 
     }
 
