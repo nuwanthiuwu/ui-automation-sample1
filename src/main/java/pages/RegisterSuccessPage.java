@@ -15,9 +15,10 @@ public class RegisterSuccessPage {
         this.driver = driver;
     }
 
-    public String successMessage(){
+    public boolean successMessage(){
         WebElement successAlertMessage = driver.findElement(SuccessAlert);
-        return successAlertMessage.getText();
+        successAlertMessage.getText();
+        return true;
     }
 
     public HomePage clickOnContinueButton() {

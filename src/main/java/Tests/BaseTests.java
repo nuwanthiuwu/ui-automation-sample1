@@ -1,8 +1,10 @@
 package Tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -13,7 +15,9 @@ public class BaseTests {
     @BeforeClass
     public void setUp(){
         WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.setHeadless(false);
+        driver = new ChromeDriver(options);
 
         driver.get("https://demo.nopcommerce.com/");
 
@@ -27,7 +31,6 @@ public class BaseTests {
         */
     }
 
-    @AfterClass
     public void closeBrowser(){
         driver.quit();
     }
