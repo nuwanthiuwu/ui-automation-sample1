@@ -24,6 +24,7 @@ public class LoginPage {
     private static final By RememberMe_Available = By.xpath("/html/body/div[6]/div[3]/div/div/div/div[2]/div[1]/div[2]/form/div[2]/div[3]/label");
 
     public LoginPage(WebDriver driver) {
+
         this.driver = driver;
     }
 
@@ -44,6 +45,8 @@ public class LoginPage {
         clickOnloginButton.click();
     }
 
+
+    //Verify that the Elements are available
     public boolean isEmailFieldAvailable() {
         WebElement isEmailFieldAvailable = driver.findElement(EmailAvailable);
         isEmailFieldAvailable.isDisplayed();
@@ -62,11 +65,63 @@ public class LoginPage {
     }
 
     public boolean is_RemeberMe_Available(){
-        WebElement is_RemeberMeAvailable = driver.findElement(RememberMe_Available);
-        return is_RemeberMeAvailable.isDisplayed();
+        WebElement RememberMeAvailable = driver.findElement(RememberMe_Available);
+        return RememberMeAvailable.isDisplayed();
     }
 
 
+    //Verify that the user is not able to log in with empty field values
+    public void ClickEmptyPassword() {
+        WebElement clickPassword = driver.findElement(PASSWORD);
+        clickPassword.click();
+    }
+
+    public void clickEmptyEmail() {
+        WebElement clickPassword = driver.findElement(EMAIL);
+        clickPassword.click();
+    }
+
+    public String errorMessage_Empty_Email() {
+        WebElement empty_EmailErrorMessage = driver.findElement(Empty_email_Error_message);
+        return empty_EmailErrorMessage.getText();
+    }
+
+
+    //Verify that the user enters invalid email address
+    public void enterInvalidEmail() {
+        WebElement invalidEmailErrorMessage = driver.findElement(EMAIL);
+        invalidEmailErrorMessage.sendKeys("nuwayopmail.com");
+    }
+
+    public String invalidEmailErrorMessage() {
+        WebElement invalidEmailErrorMessage = driver.findElement(Invalid_email_Error_message);
+        return invalidEmailErrorMessage.getText();
+    }
+
+
+    // Verify that a user with not previously registered email and password, So cannot log in and receives an appropriate error message
+    public void NotRegisteredEmail() {
+        WebElement notRegisteredemail = driver.findElement(EMAIL);
+        notRegisteredemail.sendKeys("nuwa13@yopmail.com");
+    }
+
+    public void notRegisteredPassword() {
+        WebElement notRegisteredPassword = driver.findElement(PASSWORD);
+        notRegisteredPassword.sendKeys("nuwa&124");
+    }
+
+    public void clickLogin() {
+        WebElement click_login = driver.findElement(LOGIN_BUTTON);
+        click_login.click();
+    }
+
+    public String errorMessage_invalid_username_and_password() {
+        WebElement errorMessage = driver.findElement(Error_message);
+        return errorMessage.getText();
+    }
+
+
+    // Verify that a user with valid email and password can successfully log in and is redirected to the home page
     public void enterEmail(String email) {
         WebElement enteremail = driver.findElement(EMAIL);
         enteremail.sendKeys(email);
@@ -84,61 +139,18 @@ public class LoginPage {
     }
 
 
-    public void NotRegisteredEmail() {
-        WebElement notRegisteredemail = driver.findElement(EMAIL);
-        notRegisteredemail.sendKeys("nuwa13@yopmail.com");
-    }
-
-    public void notRegisteredPassword() {
-        WebElement notRegisteredPassword = driver.findElement(PASSWORD);
-        notRegisteredPassword.sendKeys("nuwa&124");
-    }
-
-    public String errorMessage_invalid_username_and_password() {
-        WebElement errorMessage = driver.findElement(Error_message);
-        return errorMessage.getText();
-    }
-
-    public void enterInvalidEmail() {
-        WebElement invalidEmailErrorMessage = driver.findElement(EMAIL);
-        invalidEmailErrorMessage.sendKeys("nuwayopmail.com");
-    }
-
-    public String invalidEmailErrorMessage() {
-        WebElement invalidEmailErrorMessage = driver.findElement(Invalid_email_Error_message);
-        return invalidEmailErrorMessage.getText();
-    }
-
-    public void clickLogin() {
-        WebElement click_login = driver.findElement(LOGIN_BUTTON);
-        click_login.click();
-    }
-
-    public void ClickEmptyPassword() {
-        WebElement clickPassword = driver.findElement(PASSWORD);
-        clickPassword.click();
-    }
-
-    public void clickEmptyEmail() {
-        WebElement clickPassword = driver.findElement(EMAIL);
-        clickPassword.click();
-    }
-
-    public String errorMessage_Empty_Email() {
-        WebElement empty_EmailErrorMessage = driver.findElement(Empty_email_Error_message);
-        return empty_EmailErrorMessage.getText();
+    //Verify Login with Remember me on
+    public void rememberMeOn() {
+        WebElement rememberMeOn = driver.findElement(RememberMeOn);
+        rememberMeOn.click();
     }
 
 
+    //Verify navigation to forgot password page
     public ForgotPasswordPage ClickForgotPassword() {
         WebElement clickForgotPassword = driver.findElement(ForgotPassword);
         clickForgotPassword.click();
         return new ForgotPasswordPage(driver);
-    }
-
-    public void rememberMeOn() {
-        WebElement rememberMeOn = driver.findElement(RememberMeOn);
-        rememberMeOn.click();
     }
 
     public void clickOnLogout() {
