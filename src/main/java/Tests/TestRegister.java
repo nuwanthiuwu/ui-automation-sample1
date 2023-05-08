@@ -57,12 +57,10 @@ public class TestRegister extends BaseTests {
         System.out.println("CPW");
 
         RegisterSuccessPage successAlertMessage = registerPage.clickOnRegisterButton();
-        assertEquals(successAlertMessage.successMessage(),"Your registration completed","Your Registration success");
+        assertEquals(successAlertMessage.successMessage(), "Your registration completed", "Your Registration success");
 
         HomePage homePage = successAlertMessage.clickOnContinueButton();
-        assertEquals(homePage.HomePageMessage(),"Welcome to our store","Incorrect Page");
+        assertEquals(homePage.HomePageMessage(), "Welcome to our store", "Incorrect Page");
 
     }
-
-
 }

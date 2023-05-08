@@ -81,7 +81,7 @@ public class RegisterPage {
 
     public void enterEmail() {
         WebElement email = driver.findElement(By.xpath(ENTER_EMAIL_XPATH));
-        email.sendKeys("leesa"+ new Random().nextInt(1000) +"@yopmail.com");
+        email.sendKeys("leesa"+ new Random().nextInt(50) +"@yopmail.com");
     }
 
     public void enterCompanyName() {
