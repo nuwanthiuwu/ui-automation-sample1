@@ -10,20 +10,23 @@ import java.util.Random;
 public class RegisterPage {
 
     private final WebDriver driver;
-   // private static final String REGISTER_BUTTON_XPATH ="//a[normalize-space()='Register']";
+    // private static final String REGISTER_BUTTON_XPATH ="//a[normalize-space()='Register']";
     private static final By REGISTER_BUTTON = By.xpath("//a[normalize-space()='Register']");
     private static final By GENDER_XPATH = By.xpath("//input[@id='gender-female']");
     private static final By FIRSTNAME_XPATH = By.xpath("//input[@id='FirstName']");
     private static final By LASTNAME_XPATH = By.xpath("//input[@id='LastName']");
     private static final By DATE_XPATH = By.xpath("//select[@name='DateOfBirthDay']");
-    private static final String MONTH_XPATH ="//select[@name='DateOfBirthMonth']";
-    private static final String YEAR_XPATH ="//select[@name='DateOfBirthYear']";
-    private static final String ENTER_EMAIL_XPATH ="//input[@id='Email']";
-    private static final String COMPANYNAME_XPATH ="//input[@id='Company']";
-    private static final String NEWSLETTER_XPATH ="//input[@id='Newsletter']";
-    private static final String ENTER_PASSWORD_XPATH ="//input[@id='Password']";
-    private static final String ENTER_CONFIRM_PASSWORD_XPATH ="//input[@id='ConfirmPassword']";
-    private static final String CLICK_REGISTER_BUTTON_XPATH ="//button[@id='register-button']";
+    private static final String MONTH_XPATH = "//select[@name='DateOfBirthMonth']";
+    private static final String YEAR_XPATH = "//select[@name='DateOfBirthYear']";
+    private static final String ENTER_EMAIL_XPATH = "//input[@id='Email']";
+    private static final String COMPANYNAME_XPATH = "//input[@id='Company']";
+    private static final String NEWSLETTER_XPATH = "//input[@id='Newsletter']";
+    private static final String ENTER_PASSWORD_XPATH = "//input[@id='Password']";
+    private static final String ENTER_CONFIRM_PASSWORD_XPATH = "//input[@id='ConfirmPassword']";
+    private static final String CLICK_REGISTER_BUTTON_XPATH = "//button[@id='register-button']";
+    private static final By ClickOnLogout = By.xpath("/html/body/div[6]/div[1]/div[1]/div[2]/div[1]/ul/li[2]/a");
+    private static final By firstName_ErrorMessage = By.xpath("//*[@id=\"FirstName-error\"]");
+    private static final By lastName_ErrorMessage = By.xpath("//*[@id=\"LastName-error\"]");
 
 
     public RegisterPage(WebDriver driver) {
@@ -81,7 +84,7 @@ public class RegisterPage {
 
     public void enterEmail() {
         WebElement email = driver.findElement(By.xpath(ENTER_EMAIL_XPATH));
-        email.sendKeys("leesa"+ new Random().nextInt(50) +"@yopmail.com");
+        email.sendKeys("leesa" + new Random().nextInt(50) + "@yopmail.com");
     }
 
     public void enterCompanyName() {
@@ -110,6 +113,29 @@ public class RegisterPage {
         return new RegisterSuccessPage(driver);
     }
 
+    public void clickOnLogout() {
+        WebElement clickOnLogoutButton = driver.findElement(ClickOnLogout);
+        clickOnLogoutButton.click();
+    }
 
+    public void emptyFirstName() {
+        WebElement firstName = driver.findElement(FIRSTNAME_XPATH);
+        firstName.sendKeys("");
+    }
+
+    public String firstNameErrorMessage() {
+        WebElement first_NameErrorMessage = driver.findElement(firstName_ErrorMessage);
+        return first_NameErrorMessage.getText();
+    }
+
+    public String LastNameErrorMessage() {
+        WebElement last_NameErrorMessage = driver.findElement(lastName_ErrorMessage);
+        return last_NameErrorMessage.getText();
+    }
+
+    public void emptyLastName() {
+        WebElement lastName = driver.findElement(LASTNAME_XPATH);
+        lastName.sendKeys("");
+    }
 }
 
